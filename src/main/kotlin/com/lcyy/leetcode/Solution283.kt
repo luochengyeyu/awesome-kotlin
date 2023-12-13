@@ -1,9 +1,9 @@
-package com.luocheng.kt.leetcode
+package com.lcyy.leetcode
 
 import kotlin.system.measureTimeMillis
 
 /**
- * ## [283.反转二叉树](https://leetcode.cn/problems/move-zeroes/description/)
+ * ## [283.移动零](https://leetcode.cn/problems/move-zeroes/description/)
  * 给定一个数组 nums，编写一个函数将所有 0 移动到数组的末尾，同时保持非零元素的相对顺序。
  * 请注意 ，必须在不复制数组的情况下原地对数组进行操作。
  * > 示例 1:
@@ -12,6 +12,7 @@ import kotlin.system.measureTimeMillis
  */
 class Solution283 {
     fun moveZeroes(nums: IntArray) {
+        // 指针j记录最近遍历到的非零元素的下标
         var j = 0
         nums.forEachIndexed { i, num ->
             if (num != 0) {
@@ -29,11 +30,15 @@ class Solution283 {
      */
     fun moveZeroes2(nums: IntArray) {
         var j = 0
+        // 第一次遍历的时候指针 j 用来记录当前有多少 非0 元素。
+        // 即遍历的时候每遇到一个 非0 元素就将其往数组左边挪，第一次遍历完后，j 指针的下标就指向了最后一个 非0 元素下标。
         nums.forEachIndexed { i, num ->
             if (num != 0) {
                 nums[j++] = nums[i]
             }
+            println(nums.contentToString())
         }
+        // 第二次遍历的时候，起始位置就从 j 开始到结束，将剩下的这段区域内的元素全部置为 0 即可。
         for (i in j..<nums.size) {
             nums[i] = 0
         }
@@ -57,14 +62,14 @@ class Solution283 {
         verify(nums, "[0]")
     }
     fun case3() {
-        val nums = intArrayOf(1,0,0,22,0,3,0,0)
+        val nums = intArrayOf(1,0,0,22,0,3,0)
         Solution283().moveZeroes2(nums)
-        verify(nums, "[1, 22, 3, 0, 0, 0, 0, 0]")
+        verify(nums, "[1, 22, 3, 0, 0, 0, 0]")
     }
 }
 
 fun main() {
-    Solution283().case1()
-    Solution283().case2()
+//    Solution283().case1()
+//    Solution283().case2()
     Solution283().case3()
 }

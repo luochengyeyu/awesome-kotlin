@@ -1,4 +1,4 @@
-package com.luocheng.kt.leetcode
+package com.lcyy.leetcode
 
 import kotlin.system.measureTimeMillis
 
